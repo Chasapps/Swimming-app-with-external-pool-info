@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carpe Diem Passport — Splash</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="splash-body" id="splashBody">
+<div class="splash-overlay">
+<h1 id="ownerName" class="foil-emboss owner-name">Loading…</h1>
+</div>
+<script>
+(async()=>{
+ const owner=document.getElementById('ownerName');
+ try{
+  const t=await fetch('owner-name.txt');
+  owner.textContent=(await t.text()).trim()||'Carpe Diem Passport';
+ }catch(e){
+  owner.textContent='Carpe Diem Passport';
+ }
+ document.getElementById('splashBody').addEventListener('click',()=>{
+   try{sessionStorage.setItem('enteredViaSplash','1');}catch(e){}
+   location.href='overview.html';
+ });
+})();
+</script>
+</body></html>
